@@ -23,7 +23,7 @@ namespace JobApplication.Database.Repositories
         }
         public async Task<IEnumerable<GetCandidateDto>> GetJobsApplied(int id, PaginationModel pagination)
         {
-            var JobApplied = await (from j in _context.jobMasters
+            var jobApplied = await (from j in _context.jobMasters
                                     join a in _context.candidateMasters on j.Id equals a.AppliedJobId
                                     join u in _context.User on a.CandidateId equals u.Id
                                     where a.CandidateId == id
@@ -38,14 +38,14 @@ namespace JobApplication.Database.Repositories
                                  .Take(pagination.PageSize)
                                  .OrderBy(x => x.Id)
                                  .ToListAsync();
-            return JobApplied;
+            return jobApplied;
 
         }
 
 
         public async Task<IEnumerable<GetJobDto>> GetJobsAsync(PaginationModel pagination)
         {
-            var Jobs = await (from j in _context.jobMasters
+            var jobs = await (from j in _context.jobMasters
                               select new GetJobDto
                               {
                                   Id = j.Id,
@@ -56,7 +56,7 @@ namespace JobApplication.Database.Repositories
                                  .OrderBy(x => x.Id)
                                  .ToListAsync();
 
-            return Jobs;
+            return jobs;
         }
     }
 }

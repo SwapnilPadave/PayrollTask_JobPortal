@@ -26,10 +26,10 @@ namespace JobApplication.Api.Controllers
         [HttpPost("GetCandidates")]
         public async Task<IActionResult> GetCandidates(PaginationModel pagination)
         {
-            var Candidates = await _adminService.GetUsersAsync(pagination);
-            if (Candidates != null)
+            var candidates = await _adminService.GetUsersAsync(pagination);
+            if (candidates != null)
             {
-                return OkResponse("Success", Candidates);
+                return OkResponse("Success", candidates);
             }
             return BadResponse("Unable to get List of Candidates", "");
         }
@@ -37,10 +37,10 @@ namespace JobApplication.Api.Controllers
         [HttpPost("GetRecruiters")]
         public async Task<IActionResult> GetRecruiters(PaginationModel pagination)
         {
-            var Recruiters = await _adminService.GetRecruitersAsync(pagination);
-            if (Recruiters != null)
+            var recruiters = await _adminService.GetRecruitersAsync(pagination);
+            if (recruiters != null)
             {
-                return OkResponse("Success", Recruiters);
+                return OkResponse("Success", recruiters);
             }
             return BadResponse("Unable to get List of Recruiters", "");
         }
@@ -48,10 +48,10 @@ namespace JobApplication.Api.Controllers
         [HttpPost("GetJobs")]
         public async Task<IActionResult> GetJobs(PaginationModel pagination)
         {
-            var Jobs = await _adminService.GetJobsAsync(pagination);
-            if (Jobs != null)
+            var jobs = await _adminService.GetJobsAsync(pagination);
+            if (jobs != null)
             {
-                return OkResponse("Success", Jobs);
+                return OkResponse("Success", jobs);
             }
             return BadResponse("Unable to get List of Jobs", "");
         }
@@ -61,10 +61,10 @@ namespace JobApplication.Api.Controllers
         [HttpPost("GetJobAppliedByCandidates")]
         public async Task<IActionResult> GetJobAppliedByCandidates(PaginationModel pagination)
         {
-            var Jobs = await _adminService.GetJobAppliedByCandidates(pagination);
-            if (Jobs != null)
+            var jobs = await _adminService.GetJobAppliedByCandidates(pagination);
+            if (jobs != null)
             {
-                return OkResponse("Success", Jobs);
+                return OkResponse("Success", jobs);
             }
             return BadResponse("Unable to get List of Jobs", "");
         }
@@ -72,10 +72,10 @@ namespace JobApplication.Api.Controllers
         [HttpDelete("Deletejob/{Id}")]
         public async Task<IActionResult> DeleteJob(int Id)
         {
-            var Job = await _adminService.DeleteJobAsync(Id);
-            if (Job)
+            var jobs = await _adminService.DeleteJobAsync(Id);
+            if (jobs)
             {
-                return OkResponse("Success", Job);
+                return OkResponse("Success", jobs);
             }
             else
             {
@@ -86,10 +86,10 @@ namespace JobApplication.Api.Controllers
         [HttpDelete("DeleteRecruiter/{Id}")]
         public async Task<IActionResult> DeleteRecruiter(int Id)
         {
-            var Recruiter = await _adminService.DeleteRecruiterAsync(Id);
-            if (Recruiter)
+            var recruiter = await _adminService.DeleteRecruiterAsync(Id);
+            if (recruiter)
             {
-                return OkResponse("Success", Recruiter);
+                return OkResponse("Success", recruiter);
             }
             else
             {
@@ -100,10 +100,10 @@ namespace JobApplication.Api.Controllers
         [HttpDelete("DeleteUser/{Id}")]
         public async Task<IActionResult> DeleteUser(int Id)
         {
-            var User = await _adminService.DeleteUserAsync(Id);
-            if (User)
+            var user = await _adminService.DeleteUserAsync(Id);
+            if (user)
             {
-                return OkResponse("Success", User);
+                return OkResponse("Success", user);
             }
             else
             {

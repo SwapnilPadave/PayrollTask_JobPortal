@@ -28,55 +28,63 @@ namespace JobApplication.Service.JobService
         }
         public async Task<CandidateMaster> ApplyJobsAsync(int userId, JobApplyDto job)
         {
-            var applyjobs = new CandidateMaster();
-            applyjobs.CandidateId = userId;
-            applyjobs.AppliedJobId = job.JobId;
-            applyjobs.AppliedAt = DateTime.Now;
-            if (job != null)
+            try
             {
-                var candidatedetail = await _userRepository.GetByIdAsync(userId);
-                if (candidatedetail != null)
+                var applyJobs = new CandidateMaster();
+                applyJobs.CandidateId = userId;
+                applyJobs.AppliedJobId = job.JobId;
+                applyJobs.AppliedAt = DateTime.Now;
+                if (job != null)
                 {
-                    var jobs = await _jobRepository.GetByIdAsync(job.JobId);
-                    if (jobs != null)
+                    var candidateDetail = await _userRepository.GetByIdAsync(userId);
+                    if (candidateDetail != null)
                     {
-                        var recruiter = await _userRepository.GetByIdAsync(jobs.CreatedBy);
-                        StringBuilder Rmail = new StringBuilder();
-                        Rmail.Append($"<p>JobName:{jobs.Title}</p>");
-                        Rmail.Append($"<p>ApplicantName:{candidatedetail.Name}</p>");
-                        await _mailservice.SendEmailAsync(recruiter.Email, Rmail, "Recruiter", "", "");
+                        var jobs = await _jobRepository.GetByIdAsync(job.JobId);
+                        if (jobs != null)
+                        {
+                            var recruiter = await _userRepository.GetByIdAsync(jobs.CreatedBy);
+                            StringBuilder rMail = new StringBuilder();
+                            rMail.Append($"<p>JobName:{jobs.Title}</p>");
+                            rMail.Append($"<p>ApplicantName:{candidateDetail.Name}</p>");
+                            await _mailservice.SendEmailAsync(recruiter.Email, rMail, "Recruiter", "", "");
 
-                        StringBuilder AMail = new StringBuilder();
-                        AMail.Append($"<p>Applied job Success</p>");
-                        AMail.Append($"<p>Applyed job :{jobs.Title}</p>");
-                        await _mailservice.SendEmailAsync(candidatedetail.Email, AMail, "Applicant", "", "");
+                            StringBuilder aMail = new StringBuilder();
+                            aMail.Append($"<p>Applied job Success</p>");
+                            aMail.Append($"<p>Applyed job :{jobs.Title}</p>");
+                            await _mailservice.SendEmailAsync(candidateDetail.Email, aMail, "Applicant", "", "");
+                        }
                     }
+
+
+                    return await _candidateRepository.AddAsync(applyJobs);
+
+                }
+                else
+                {
+                    return null;
                 }
 
-
-                return await _candidateRepository.AddAsync(applyjobs);
-
             }
-            else
+            catch (Exception ex)
             {
-                return null;
+
+                throw ex;
             }
         }
-
         public async Task<IEnumerable<GetCandidateDto>> GetJobsApplied(int id, PaginationModel pagination)
         {
-            var JobApplied = await _jobRepository.GetJobsApplied(id, pagination);
-            if (JobApplied != null)
-                return JobApplied;
+            var jobApplied = await _jobRepository.GetJobsApplied(id, pagination);
+            if (jobApplied != null)
+                return jobApplied;
             return null;
 
         }
 
         public async Task<IEnumerable<GetJobDto>> GetJobsAsync(PaginationModel pagination)
         {
-            var Jobs = await _jobRepository.GetJobsAsync(pagination);
-            if (Jobs != null)
-                return Jobs;
+            var jobs = await _jobRepository.GetJobsAsync(pagination);
+            if (jobs != null)
+                return jobs;
             return null;
 
         }

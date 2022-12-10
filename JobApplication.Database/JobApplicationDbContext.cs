@@ -16,5 +16,6 @@ namespace JobApplication.Database
         public DbSet<OtpMaster> otpMasters { get; set; }
         public DbSet<JobMaster> jobMasters { get; set; }
         public DbSet<CandidateMaster> candidateMasters { get; set; }
+        public DbSet<RoleMappingModel> roleMappingModels { get; set; }
     }
 }

@@ -34,9 +34,9 @@ namespace JobApplication.Database.Repositories
                                select j).CountAsync();
             }
 
-            var Jobs = await (from j in _context.jobMasters
+            var jobs = await (from j in _context.jobMasters
                               select new GetJobDto
-                              {
+                             {
                                   Id = j.Id,
                                   Title = j.Title,
                                   Description = j.Description
@@ -47,7 +47,7 @@ namespace JobApplication.Database.Repositories
                                .OrderBy(x => x.Id)
                                .ToListAsync();
 
-            return Jobs;
+            return jobs;
 
 
         }
@@ -127,7 +127,7 @@ namespace JobApplication.Database.Repositories
                                ).CountAsync();
             }
 
-            var AppliedJobs = await (from u in _context.User
+            var appliedJobs = await (from u in _context.User
                                      join a in _context.candidateMasters on u.Id equals a.CandidateId
                                      join j in _context.jobMasters on a.AppliedJobId equals j.Id
                                      select new GetJobAppliedByCandidateDto
@@ -143,7 +143,7 @@ namespace JobApplication.Database.Repositories
                                .OrderBy(x => x.Id)
                                .ToListAsync();
 
-            return AppliedJobs;
+            return appliedJobs;
         }
     }
 }

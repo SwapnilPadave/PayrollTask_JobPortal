@@ -44,8 +44,8 @@ namespace JobApplication.Api.Controllers
             return BadResponse("Unable to get List of Jobs", "");
         }
 
-        [HttpPost("GetApplyJob")]
-        public async Task<IActionResult> GetApplyJob(JobApplyDto job)
+        [HttpPost("ApplyJob")]
+        public async Task<IActionResult> ApplyJob(JobApplyDto job)
         {
             var jobs = await _jobservice.ApplyJobsAsync(UserId, job);
             if (jobs != null)

@@ -25,10 +25,10 @@ namespace JobApplication.Api.Controllers
         [HttpPost("GetPostedJob")]
         public async Task<IActionResult> GetPostedJob(PaginationModel pagination)
         {
-            var Jobs = await _recruiterService.GetPostedJobAsync(UserId, pagination);
-            if (Jobs != null)
+            var jobs = await _recruiterService.GetPostedJobAsync(UserId, pagination);
+            if (jobs != null)
             {
-                return OkResponse("Success", Jobs);
+                return OkResponse("Success", jobs);
             }
             else
             {
@@ -40,10 +40,10 @@ namespace JobApplication.Api.Controllers
         [HttpPost("GetJobAppliedByCandidate")]
         public async Task<IActionResult> JobAppliedByCandidate(PaginationModel pagination)
         {
-            var Jobs = await _recruiterService.GetJobAppliedByCandidateAsync(UserId, pagination);
-            if (Jobs != null)
+            var jobs = await _recruiterService.GetJobAppliedByCandidateAsync(UserId, pagination);
+            if (jobs != null)
             {
-                return OkResponse("Success", Jobs);
+                return OkResponse("Success", jobs);
             }
             else
             {
@@ -54,10 +54,10 @@ namespace JobApplication.Api.Controllers
         [HttpPost("AddJob")]
         public async Task<IActionResult> AddJob(AddJobDto addJobDto)
         {
-            var Job = await _recruiterService.AddJobAsync(UserId, addJobDto);
-            if (Job != null)
+            var job = await _recruiterService.AddJobAsync(UserId, addJobDto);
+            if (job != null)
             {
-                return OkResponse("Success", Job);
+                return OkResponse("Success", job);
             }
             else
             {

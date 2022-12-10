@@ -8,6 +8,7 @@ using JobApplication.Service.EmailService;
 using JobApplication.Service.JobService;
 using JobApplication.Service.OtpService;
 using JobApplication.Service.RecruiterService;
+using JobApplication.Service.RoleMapService;
 using JobApplication.Service.RoleService;
 using JobApplication.Service.UserService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -80,6 +81,8 @@ namespace JobApplication.Api
                     .AddScoped<IUserRepository, UserRepository>()
                     .AddScoped<IRoleService, RoleService>()
                     .AddScoped<IRoleRepository, RoleRepository>()
+                    .AddScoped<IRoleMappingRepository ,RoleMappingRepository>()
+                    .AddScoped<IRoleMappingService ,RoleMappingService>()
                     .AddScoped<IOtpService, OtpService>()
                     .AddScoped<IOtpRepository, OtpRepository>()
                     .AddScoped<IJobService, JobService>()

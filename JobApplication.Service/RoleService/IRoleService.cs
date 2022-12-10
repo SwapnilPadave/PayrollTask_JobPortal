@@ -1,4 +1,7 @@
-﻿using JobApplication.Model.Models;
+﻿using JobApplication.Model.Dto.RoleDto;
+using JobApplication.Model.Dto.RoleMappingDto;
+using JobApplication.Model.Dto.UserDto;
+using JobApplication.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,7 +11,7 @@ namespace JobApplication.Service.RoleService
 {
     public interface IRoleService
     {
-        Task<RoleMaster> AddRoleAsync();
-        Task<RoleMaster> GetById(int id);
+        Task<RoleMaster> AddRoleAsync(AddRoleDto addRole);
+        Task<RoleMaster> GetById(int id);        
     }
 }

@@ -25,9 +25,9 @@ namespace JobApplication.Service.AdminService
         }
         public async Task<IEnumerable<GetJobDto>> GetJobsAsync(PaginationModel pagination)
         {
-            var Jobs = await _adminRepository.GetJobsAsync(pagination);
-            if (Jobs != null)
-                return Jobs;
+            var jobs = await _adminRepository.GetJobsAsync(pagination);
+            if (jobs != null)
+                return jobs;
             return null;
 
         }
@@ -51,9 +51,9 @@ namespace JobApplication.Service.AdminService
 
         public async Task<IEnumerable<GetJobAppliedByCandidateDto>> GetJobAppliedByCandidates(PaginationModel pagination)
         {
-            var AppliedJobs = await _adminRepository.GetJobAppliedByCandidates(pagination);
-            if (AppliedJobs != null)
-                return AppliedJobs;
+            var appliedJobs = await _adminRepository.GetJobAppliedByCandidates(pagination);
+            if (appliedJobs != null)
+                return appliedJobs;
             return null;
 
         }
