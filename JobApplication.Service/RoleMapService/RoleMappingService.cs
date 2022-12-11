@@ -11,16 +11,24 @@ namespace JobApplication.Service.RoleMapService
     public class RoleMappingService : IRoleMappingService
     {
         private readonly IRoleMappingRepository _roleMappingRepository;
+        private readonly IRoleRepository _roleRepository;
+        private readonly IUserRepository _userRepository;
 
-        public RoleMappingService(IRoleMappingRepository roleMappingRepository)
+        public RoleMappingService(IRoleMappingRepository roleMappingRepository, IRoleRepository roleRepository, IUserRepository userRepository)
         {
             _roleMappingRepository = roleMappingRepository;
+            _roleRepository = roleRepository;
+            _userRepository = userRepository;
         }
 
         public async Task<RoleMappingModel> AssignRole(RoleMappingDto roleMapping)
         {
-            var data = new RoleMappingModel();            
-            var result = await _roleMappingRepository.AddAsync(data);
+            var data = new RoleMappingModel();
+            var role = await _roleRepository.GetByIdAsync(roleMapping.RoleId);
+            var user = await _userRepository.GetByIdAsync(roleMapping.UserId);
+            data.RoleId = role.Id;
+            data.UserId = user.Id;
+            var result = await _roleMappingRepository.AddAsync(data);            
             return result;
         }
 
