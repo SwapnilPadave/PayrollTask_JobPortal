@@ -11,12 +11,17 @@ namespace JobApplication.Service.RoleMapService
     public class RoleMappingService : IRoleMappingService
     {
         private readonly IRoleMappingRepository _roleMappingRepository;
+        private readonly IRoleRepository _roleRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IUserRepository _userRepository;
         private readonly IRoleRepository _roleRepository;
 
+        public RoleMappingService(IRoleMappingRepository roleMappingRepository, IRoleRepository roleRepository, IUserRepository userRepository)
         public RoleMappingService(IRoleMappingRepository roleMappingRepository, IUserRepository userRepository, IRoleRepository roleRepository)
         {
             _roleMappingRepository = roleMappingRepository;
+            _roleRepository = roleRepository;
+            _userRepository = userRepository;
             _userRepository = userRepository;
             _roleRepository = roleRepository;
         }
@@ -42,6 +47,14 @@ namespace JobApplication.Service.RoleMapService
             {
                 throw ex;
             }
+        }
+            var data = new RoleMappingModel();
+            var role = await _roleRepository.GetByIdAsync(roleMapping.RoleId);
+            var user = await _userRepository.GetByIdAsync(roleMapping.UserId);
+            data.RoleId = role.Id;
+            data.UserId = user.Id;
+            var result = await _roleMappingRepository.AddAsync(data);            
+            return result;
         }
 
         public async Task<IEnumerable<RoleMappingModel>> GetAllRoleMapping()

@@ -43,7 +43,8 @@ namespace JobApplication.Service.AccountService
                 body.Append("<h3>Job Portal</h3>");
                 body.AppendLine($"<h4 style='font-size:1.1em'>Hi, {user.Name}</h4>");
                 body.AppendLine("<h5>For Reseting your password, OTP is valid for 10 minutes</h5>");
-                body.AppendLine($"<h2 style='background: #00466a;margin: 0 auto;width: max-content;padding: 0 10px;color: #fff;border-radius: 4px;'>{otp}</h2>");
+                body.AppendLine($"<h2 style='background: #D4FF33;margin: 0 auto;width: max-content;padding: 0 10px;color: #000000;border-radius: 4px;'>{otp}</h2>");
+                body.AppendLine("<h6 style='color:#FF0000'>This is auto generated mail</h6>");
 
                 var userOtp = new OtpMaster();
                 userOtp.Otp = Convert.ToInt32(otp);
