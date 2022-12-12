@@ -23,8 +23,8 @@ namespace JobApplication.Model.Models
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Required]
-        public int RoleId { get; set; }
+        //[Required]
+        public int? RoleId { get; set; }
 
         [Required]
         public DateTime CreatedDate { get; set; }

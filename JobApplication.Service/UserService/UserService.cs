@@ -18,36 +18,53 @@ namespace JobApplication.Service.UserService
         }
         public async Task<IEnumerable<GetUserDto>> GetUsersAsync(PaginationModel pagination)
         {
-            var user = await _userRepository.GetUsersAsync(pagination);
-            if (user != null)
-                return user;
-            return null;
+            try
+            {
+                var user = await _userRepository.GetUsersAsync(pagination);
+                return user;                
+            }
+            catch (Exception)
+            {
+                throw new NullReferenceException();
+            }
         }
 
         public async Task<UserMaster> GetUserByIdAsync(int Id)
         {
-            var user = await _userRepository.GetByIdAsync(Id);
-            if (user != null)
+            try
+            {
+                var user = await _userRepository.GetByIdAsync(Id);
                 return user;
-            return null;
+            }
+            catch (Exception)
+            {
+
+                throw new NullReferenceException();
+            }
         }
 
 
         public async Task<UserMaster> AddUserAsync(AddUserDto Users)
         {
 
-            UserMaster user = new UserMaster();
-            user.Name = Users.Name;
-            user.Password = BCrypt.Net.BCrypt.HashPassword(Users.Password);
-            user.RoleId = Users.RoleId;
-            user.Email = Users.Email;
-            user.CreatedDate = DateTime.Now;
-            user.ModifiedDate = DateTime.Now;
-            user.IsActive = true;
-            var result = await _userRepository.AddAsync(user);
-            if (result != null)
+            try
+            {
+                UserMaster user = new UserMaster();
+                user.Name = Users.Name;
+                user.Password = BCrypt.Net.BCrypt.HashPassword(Users.Password);
+                user.RoleId = Users.RoleId;
+                user.Email = Users.Email;
+                user.CreatedDate = DateTime.Now;
+                user.ModifiedDate = DateTime.Now;
+                user.IsActive = true;
+                var result = await _userRepository.AddAsync(user);
                 return result;
-            return null;
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("Something Went Wrong..");
+            }
 
         }
 

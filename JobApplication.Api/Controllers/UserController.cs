@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace JobApplication.Api.Controllers
 {
-    [Authorize(Policy = "AdminAndRecruiter")]
+    [Authorize(Policy = "AdminAndCandidate")]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : BaseController

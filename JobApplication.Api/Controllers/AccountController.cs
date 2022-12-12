@@ -43,7 +43,7 @@ namespace JobApplication.Api.Controllers
             var user = await _userService.GetUserAsync(loginDto.Email, loginDto.Password);
             if (user != null)
             {
-                var role = await _roleService.GetById(user.RoleId);
+                var role = await _roleService.GetById((int)user.RoleId);
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name,user.Name),
