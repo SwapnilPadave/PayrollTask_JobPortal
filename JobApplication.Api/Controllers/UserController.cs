@@ -1,11 +1,7 @@
 ﻿using JobApplication.Model.Dto.UserDto;
 using JobApplication.Service.UserService;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace JobApplication.Api.Controllers
@@ -24,16 +20,16 @@ namespace JobApplication.Api.Controllers
         [AllowAnonymous]
         [HttpPost("registration")]
         public async Task<IActionResult> UserRegistrationAsync(AddUserDto addUserDto)
-        {
-            if (addUserDto.RoleId == 2)
+        {            
+            if (ModelState.IsValid)
             {
-                if (!HttpContext.User.IsInRole("Admin"))
-                    return BadResponse("Please login As admin ", "");
-            }
-            var user = await _userService.AddUserAsync(addUserDto);
-            if (user != null)
+                var user = await _userService.AddUserAsync(addUserDto);
                 return OkResponse("User Registration Successfully", user);
-            return BadResponse("User Registration Failed", "");
+            }                           
+            else
+            {
+                return BadResponse("User Registration Failed", "Contact admin.");
+            }            
         }
 
         [HttpGet("Getuser/{id}")]
@@ -52,10 +48,10 @@ namespace JobApplication.Api.Controllers
 
         [HttpPost("Updateuser/{id}")]
         public async Task<IActionResult> UpdateUserAsync(int id, [FromBody] UpdateUserDto updateUserDto)
-        {
-            var user = await _userService.UpdateUserAsync(id, updateUserDto);
-            if (user != null)
+        {            
+            if (ModelState.IsValid)
             {
+                var user = await _userService.UpdateUserAsync(id, updateUserDto);
                 return OkResponse("Updated Sucessfully", user);
             }
             else

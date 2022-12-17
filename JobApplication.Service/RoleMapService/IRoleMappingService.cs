@@ -1,8 +1,6 @@
 ﻿using JobApplication.Model.Dto.RoleMappingDto;
 using JobApplication.Model.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace JobApplication.Service.RoleMapService

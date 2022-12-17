@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace JobApplication.Model.Dto.UserDto
 {
@@ -16,11 +15,6 @@ namespace JobApplication.Model.Dto.UserDto
 
         [Required]
         [DataType(DataType.EmailAddress)]
-        public string Email { get; set; }        
-        public int? RoleId { get; set; }
-    }
-    public class UpdateUserRoleDto
-    {
-        public int RoleId { get; set; }
+        public string Email { get; set; }
     }
 }

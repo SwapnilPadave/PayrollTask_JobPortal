@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -23,7 +22,6 @@ namespace JobApplication.Service.EmailService
         }
         public async Task Execute(string to, StringBuilder builder, string Subject, string bcc, string CC)
         {
-
             MailMessage mail = new MailMessage()
             {
                 From = new MailAddress(_configuration["MailSettings:From"], _configuration["MailSettings:DisplayName"])

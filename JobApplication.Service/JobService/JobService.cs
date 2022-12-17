@@ -3,7 +3,6 @@ using JobApplication.Model.Dto.CandidateDto;
 using JobApplication.Model.Dto.JobDto;
 using JobApplication.Model.Models;
 using JobApplication.Service.EmailService;
-using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -54,20 +53,15 @@ namespace JobApplication.Service.JobService
                             await _mailservice.SendEmailAsync(candidateDetail.Email, aMail, "Applicant", "", "");
                         }
                     }
-
-
                     return await _candidateRepository.AddAsync(applyJobs);
-
                 }
                 else
                 {
                     return null;
                 }
-
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -77,7 +71,6 @@ namespace JobApplication.Service.JobService
             if (jobApplied != null)
                 return jobApplied;
             return null;
-
         }
 
         public async Task<IEnumerable<GetJobDto>> GetJobsAsync(PaginationModel pagination)
@@ -86,7 +79,6 @@ namespace JobApplication.Service.JobService
             if (jobs != null)
                 return jobs;
             return null;
-
         }
     }
 

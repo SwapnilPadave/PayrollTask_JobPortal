@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace JobApplication.Model.Models
 {
     public class PaginationModel

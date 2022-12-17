@@ -1,9 +1,7 @@
 ﻿using JobApplication.Model.Dto.CandidateDto;
 using JobApplication.Model.Dto.JobDto;
 using JobApplication.Model.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace JobApplication.Service.JobService

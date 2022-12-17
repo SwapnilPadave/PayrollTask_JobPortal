@@ -1,14 +1,9 @@
 ﻿using JobApplication.Model.Dto.RoleDto;
 using JobApplication.Model.Dto.RoleMappingDto;
-using JobApplication.Model.Dto.UserDto;
 using JobApplication.Service.RoleMapService;
 using JobApplication.Service.RoleService;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace JobApplication.Api.Controllers
@@ -26,13 +21,6 @@ namespace JobApplication.Api.Controllers
             _roleMappingService = roleMappingService;
         }
 
-        [HttpPost("CreateRole")]
-        public async Task<IActionResult> AddRole(AddRoleDto addRole)
-        {
-            var result = await _roleService.AddRoleAsync(addRole);
-            return Ok(result);
-        }
-
         [HttpPost("GetRolById/{id}")]
         public async Task<IActionResult> GetRoleById(int id)
         {
@@ -40,11 +28,33 @@ namespace JobApplication.Api.Controllers
             return Ok(result);
         }
 
+        [HttpPost("CreateRole")]
+        public async Task<IActionResult> AddRole(AddRoleDto addRole)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _roleService.AddRoleAsync(addRole);
+                return Ok(result);
+            }
+            else
+            {
+                return NotFoundResponse("Something went wrong.", "");
+            }
+            
+        }        
+
         [HttpPost("AssignRoleToUser")]
         public async Task<IActionResult> AssignRole(RoleMappingDto roleMapping)
         {
-            var data = await _roleMappingService.AssignRole(roleMapping);
-            return Ok(data);
+            if (ModelState.IsValid)
+            {
+                var data = await _roleMappingService.AssignRole(roleMapping);
+                return Ok(data);
+            }
+            else
+            {
+                return NotFoundResponse("Something went wrong.", "");
+            }            
         }
 
         [HttpPost("GetRoleMapById/{id}")]

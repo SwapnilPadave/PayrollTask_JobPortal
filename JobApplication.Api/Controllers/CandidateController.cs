@@ -2,11 +2,7 @@
 using JobApplication.Model.Models;
 using JobApplication.Service.JobService;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace JobApplication.Api.Controllers
@@ -46,10 +42,10 @@ namespace JobApplication.Api.Controllers
 
         [HttpPost("ApplyJob")]
         public async Task<IActionResult> ApplyJob(JobApplyDto job)
-        {
-            var jobs = await _jobservice.ApplyJobsAsync(UserId, job);
-            if (jobs != null)
+        {            
+            if (ModelState.IsValid)
             {
+                var jobs = await _jobservice.ApplyJobsAsync(UserId, job);
                 return OkResponse("Job applied Success", jobs);
             }
             return BadResponse("Unable to apply Job", "");

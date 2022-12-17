@@ -4,7 +4,6 @@ using JobApplication.Model.Dto.RecruiterDto;
 using JobApplication.Model.Models;
 using System.Linq;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 

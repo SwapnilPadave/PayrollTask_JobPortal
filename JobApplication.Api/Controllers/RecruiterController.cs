@@ -2,11 +2,7 @@
 using JobApplication.Model.Models;
 using JobApplication.Service.RecruiterService;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace JobApplication.Api.Controllers
@@ -47,21 +43,21 @@ namespace JobApplication.Api.Controllers
             }
             else
             {
-                return NotFoundResponse("Jobs Not Found", "");
+                return NotFoundResponse("Jobs Not Found", "Contact to R");
             }
         }
 
         [HttpPost("AddJob")]
         public async Task<IActionResult> AddJob(AddJobDto addJobDto)
-        {
-            var job = await _recruiterService.AddJobAsync(UserId, addJobDto);
-            if (job != null)
+        {            
+            if (ModelState.IsValid)
             {
+                var job = await _recruiterService.AddJobAsync(UserId, addJobDto);
                 return OkResponse("Success", job);
             }
             else
             {
-                return NotFoundResponse("Unable TO Add New Job ", "");
+                return NotFoundResponse("Unable To Add New Job ", "");
             }
         }
     }

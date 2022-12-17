@@ -1,8 +1,6 @@
 ﻿using JobApplication.Database.Repositories;
 using JobApplication.Model;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace JobApplication.Service.OtpService
@@ -21,7 +19,6 @@ namespace JobApplication.Service.OtpService
             if (result != null)
                 return result;
             return null;
-
         }
 
         public async Task<bool> IsOtpUnique(int otp)
@@ -32,12 +29,10 @@ namespace JobApplication.Service.OtpService
 
         public async Task<OtpMaster> Validate(int otp)
         {
-
             var result = await _otpRepository.GetDefault(x => x.Otp == otp && x.expiry >= DateTime.Now);
             if (result != null)
                 return result;
             return null;
-
         }
     }
 }

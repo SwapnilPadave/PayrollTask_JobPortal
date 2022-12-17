@@ -5,7 +5,6 @@ using JobApplication.Model.Models;
 using JobApplication.Service.EmailService;
 using JobApplication.Service.OtpService;
 using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -59,7 +58,6 @@ namespace JobApplication.Service.AccountService
         }
         public async Task<UserMaster> ResetPassword(int otp, string newPassword, string confirmPassword)
         {
-
             var details = await ValidateOtp(otp);
             var updateUser = new UserMaster();
             if (details != null)
@@ -72,7 +70,6 @@ namespace JobApplication.Service.AccountService
                     return updateUser;
                 }
             }
-
             return null;
         }
 
@@ -87,7 +84,6 @@ namespace JobApplication.Service.AccountService
             {
                 return null;
             }
-
         }
 
         private static string GenerateRandomNo()
@@ -99,6 +95,5 @@ namespace JobApplication.Service.AccountService
         {
             return await _otpService.Validate(otp);
         }
-
     }
 }

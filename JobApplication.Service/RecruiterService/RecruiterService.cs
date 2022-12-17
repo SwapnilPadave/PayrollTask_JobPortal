@@ -2,10 +2,8 @@
 using JobApplication.Model.Dto.JobDto;
 using JobApplication.Model.Dto.RecruiterDto;
 using JobApplication.Model.Models;
-using JobApplication.Service.RoleService;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace JobApplication.Service.RecruiterService
@@ -24,22 +22,29 @@ namespace JobApplication.Service.RecruiterService
 
         public async Task<JobMaster> AddJobAsync(int id, AddJobDto addJobDto)
         {
-            if (addJobDto != null)
+            try
             {
-                JobMaster jobMaster = new JobMaster();
-                jobMaster.Title = addJobDto.Title;
-                jobMaster.Description = addJobDto.Description;
-                jobMaster.CreatedBy = id;
-                jobMaster.CreatedAt = DateTime.Now;
-                jobMaster.isActive = true;
-                return await _jobRepository.AddAsync(jobMaster);
+                if (addJobDto != null)
+                {
+                    var jobMaster = new JobMaster();
+                    jobMaster.Title = addJobDto.Title;
+                    jobMaster.Description = addJobDto.Description;
+                    jobMaster.CreatedBy = id;
+                    jobMaster.CreatedAt = DateTime.Now;
+                    jobMaster.isActive = true;
+                    return await _jobRepository.AddAsync(jobMaster);
+                }
+                return null;
             }
-            return null;
+            catch (Exception ex)
+            {
+                throw new Exception("Something went wrong..");
+                throw ex;
+            }
         }
 
         public async Task<IEnumerable<GetJobAppliedByCandidateDto>> GetJobAppliedByCandidateAsync(int id, PaginationModel pagination)
         {
-
             var appliedJobs = await _recruiterRepository.GetJobAppliedByCandidateAsync(id, pagination);
             if (appliedJobs != null)
             {
@@ -49,7 +54,6 @@ namespace JobApplication.Service.RecruiterService
             {
                 return null;
             }
-
         }
 
         public async Task<IEnumerable<GetJobDto>> GetPostedJobAsync(int id, PaginationModel pagination)
@@ -58,7 +62,6 @@ namespace JobApplication.Service.RecruiterService
             if (jobs != null)
                 return jobs;
             return null;
-
         }
     }
 }

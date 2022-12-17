@@ -1,7 +1,4 @@
 ﻿using JobApplication.Model.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace JobApplication.Database.Infrastructure
 {

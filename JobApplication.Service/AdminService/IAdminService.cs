@@ -2,9 +2,7 @@
 using JobApplication.Model.Dto.RecruiterDto;
 using JobApplication.Model.Dto.UserDto;
 using JobApplication.Model.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace JobApplication.Service.AdminService
@@ -18,6 +16,5 @@ namespace JobApplication.Service.AdminService
         Task<bool> DeleteUserAsync(int id);
         Task<bool> DeleteRecruiterAsync(int id);
         Task<bool> DeleteJobAsync(int id);
-
     }
 }

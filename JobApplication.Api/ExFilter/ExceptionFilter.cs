@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace JobApplication.Api.ExFilter
 {
@@ -36,7 +33,6 @@ namespace JobApplication.Api.ExFilter
             var response = new HttpResponseMessage(httpStatus)
             {
                 Content = new StringContent(errormessage),
-
             };
             context.HttpContext.Response.WriteAsync(JsonSerializer.Serialize(response));
         }

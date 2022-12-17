@@ -3,9 +3,7 @@ using JobApplication.Model.Dto.JobDto;
 using JobApplication.Model.Dto.RecruiterDto;
 using JobApplication.Model.Dto.UserDto;
 using JobApplication.Model.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace JobApplication.Service.AdminService
@@ -21,7 +19,6 @@ namespace JobApplication.Service.AdminService
             _jobRepository = jobRepository;
             _userRepository = userRepository;
             _adminRepository = adminRepository;
-
         }
         public async Task<IEnumerable<GetJobDto>> GetJobsAsync(PaginationModel pagination)
         {
@@ -29,7 +26,6 @@ namespace JobApplication.Service.AdminService
             if (jobs != null)
                 return jobs;
             return null;
-
         }
 
         public async Task<IEnumerable<GetUserDto>> GetRecruitersAsync(PaginationModel pagination)
@@ -46,7 +42,6 @@ namespace JobApplication.Service.AdminService
             if (users != null)
                 return users;
             return null;
-
         }
 
         public async Task<IEnumerable<GetJobAppliedByCandidateDto>> GetJobAppliedByCandidates(PaginationModel pagination)
@@ -55,13 +50,12 @@ namespace JobApplication.Service.AdminService
             if (appliedJobs != null)
                 return appliedJobs;
             return null;
-
         }
 
 
         public async Task<bool> DeleteJobAsync(int id)
         {
-            JobMaster job = await _jobRepository.GetByIdAsync(id);
+            var job = await _jobRepository.GetByIdAsync(id);
             job.isActive = false;
             if (_jobRepository.UpdateAsync(job).IsCompleted)
             {
@@ -70,12 +64,11 @@ namespace JobApplication.Service.AdminService
             {
                 return false;
             }
-
         }
 
         public async Task<bool> DeleteRecruiterAsync(int id)
         {
-            UserMaster user = await _userRepository.GetByIdAsync(id);
+            var user = await _userRepository.GetByIdAsync(id);
             user.IsActive = false;
             if (_userRepository.UpdateAsync(user).IsCompleted)
             {
@@ -88,7 +81,7 @@ namespace JobApplication.Service.AdminService
 
         public async Task<bool> DeleteUserAsync(int id)
         {
-            UserMaster user = await _userRepository.GetByIdAsync(id);
+            var user = await _userRepository.GetByIdAsync(id);
             user.IsActive = false;
             if (_userRepository.UpdateAsync(user).IsCompleted)
             {

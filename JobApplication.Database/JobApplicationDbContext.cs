@@ -1,7 +1,6 @@
 ﻿using JobApplication.Model;
 using JobApplication.Model.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace JobApplication.Database
 {
