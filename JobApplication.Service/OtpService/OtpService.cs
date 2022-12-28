@@ -16,9 +16,7 @@ namespace JobApplication.Service.OtpService
         public async Task<OtpMaster> AddOtpAsync(OtpMaster otp)
         {
             var result = await _otpRepository.AddAsync(otp);
-            if (result != null)
-                return result;
-            return null;
+            return result;
         }
 
         public async Task<bool> IsOtpUnique(int otp)
@@ -30,9 +28,7 @@ namespace JobApplication.Service.OtpService
         public async Task<OtpMaster> Validate(int otp)
         {
             var result = await _otpRepository.GetDefault(x => x.Otp == otp && x.expiry >= DateTime.Now);
-            if (result != null)
-                return result;
-            return null;
+            return result;
         }
     }
 }

@@ -70,20 +70,13 @@ namespace JobApplication.Service.AccountService
                     return updateUser;
                 }
             }
-            return null;
+            return updateUser;
         }
 
         public async Task<UserMaster> GetUserByMail(string email)
         {
             var user = await _accountRepository.GetDefault(x => x.Email == email);
-            if (user != null)
-            {
-                return user;
-            }
-            else
-            {
-                return null;
-            }
+            return user;
         }
 
         private static string GenerateRandomNo()

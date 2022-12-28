@@ -23,33 +23,25 @@ namespace JobApplication.Service.AdminService
         public async Task<IEnumerable<GetJobDto>> GetJobsAsync(PaginationModel pagination)
         {
             var jobs = await _adminRepository.GetJobsAsync(pagination);
-            if (jobs != null)
-                return jobs;
-            return null;
+            return jobs;
         }
 
         public async Task<IEnumerable<GetUserDto>> GetRecruitersAsync(PaginationModel pagination)
         {
             var recruiters = await _adminRepository.GetRecruitersAsync(pagination);
-            if (recruiters != null)
-                return recruiters;
-            return null;
+            return recruiters;
         }
 
         public async Task<IEnumerable<GetUserDto>> GetUsersAsync(PaginationModel pagination)
         {
             var users = await _adminRepository.GetUsersAsync(pagination);
-            if (users != null)
-                return users;
-            return null;
+            return users;
         }
 
         public async Task<IEnumerable<GetJobAppliedByCandidateDto>> GetJobAppliedByCandidates(PaginationModel pagination)
         {
             var appliedJobs = await _adminRepository.GetJobAppliedByCandidates(pagination);
-            if (appliedJobs != null)
-                return appliedJobs;
-            return null;
+            return appliedJobs;
         }
 
 

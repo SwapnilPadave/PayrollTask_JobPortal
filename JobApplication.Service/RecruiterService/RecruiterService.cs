@@ -37,8 +37,7 @@ namespace JobApplication.Service.RecruiterService
                 return null;
             }
             catch (Exception ex)
-            {
-                throw new Exception("Something went wrong..");
+            {                
                 throw ex;
             }
         }
@@ -46,22 +45,13 @@ namespace JobApplication.Service.RecruiterService
         public async Task<IEnumerable<GetJobAppliedByCandidateDto>> GetJobAppliedByCandidateAsync(int id, PaginationModel pagination)
         {
             var appliedJobs = await _recruiterRepository.GetJobAppliedByCandidateAsync(id, pagination);
-            if (appliedJobs != null)
-            {
-                return appliedJobs;
-            }
-            else
-            {
-                return null;
-            }
+            return appliedJobs;
         }
 
         public async Task<IEnumerable<GetJobDto>> GetPostedJobAsync(int id, PaginationModel pagination)
         {
             var jobs = await _recruiterRepository.GetPostedJobAsync(id, pagination);
-            if (jobs != null)
-                return jobs;
-            return null;
+            return jobs;
         }
     }
 }

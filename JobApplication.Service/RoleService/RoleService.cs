@@ -18,15 +18,16 @@ namespace JobApplication.Service.RoleService
 
         public async Task<RoleMaster> AddRoleAsync(AddRoleDto addRole)
         {
+            var data = new RoleMaster();
             try
-            {
-                var data = new RoleMaster();
+            {                
                 if (data != null)
                 {
                     data.Role = addRole.Role;
-                    await _roleRepository.AddAsync(data);
+                    await _roleRepository.AddAsync(data);                    
                 }
                 return data;
+
             }
             catch (Exception ex)
             {
@@ -37,9 +38,7 @@ namespace JobApplication.Service.RoleService
         public async Task<RoleMaster> GetById(int id)
         {
             var role = await _roleRepository.GetByIdAsync(id);
-            if (role != null)
-                return role;
-            return null;
+            return role;
         }
     }
 }

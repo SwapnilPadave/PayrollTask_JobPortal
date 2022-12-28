@@ -68,17 +68,13 @@ namespace JobApplication.Service.JobService
         public async Task<IEnumerable<GetCandidateDto>> GetJobsApplied(int id, PaginationModel pagination)
         {
             var jobApplied = await _jobRepository.GetJobsApplied(id, pagination);
-            if (jobApplied != null)
-                return jobApplied;
-            return null;
+            return jobApplied;
         }
 
         public async Task<IEnumerable<GetJobDto>> GetJobsAsync(PaginationModel pagination)
         {
             var jobs = await _jobRepository.GetJobsAsync(pagination);
-            if (jobs != null)
-                return jobs;
-            return null;
+            return jobs;
         }
     }
 

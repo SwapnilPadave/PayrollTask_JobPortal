@@ -72,9 +72,14 @@ namespace JobApplication.Service.UserService
                     user.Name = Users.Name;
                     user.Email = Users.Email;
                     user.ModifiedDate = DateTime.Now;
-                    await _userRepository.UpdateAsync(user);                    
+                    await _userRepository.UpdateAsync(user);
+                    return user;
                 }
-                return user;
+                else
+                {
+                    return null;
+                }
+                
             }
             catch (Exception ex)
             {
