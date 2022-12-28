@@ -21,23 +21,15 @@ namespace JobApplication.Api.Controllers
         [HttpPost("GetJobs")]
         public async Task<IActionResult> GetJobs(PaginationModel pagination)
         {
-            var jobs = await _jobservice.GetJobsAsync(pagination);
-            if (jobs != null)
-            {
-                return OkResponse("Success", jobs);
-            }
-            return BadResponse("Unable to get List of Jobs", "");
+            var jobs = await _jobservice.GetJobsAsync(pagination);            
+            return Ok(jobs);
         }
 
         [HttpPost("GetAppliedJobsByCandidate")]
         public async Task<IActionResult> GetAppliedJobs(PaginationModel pagination)
         {
             var jobs = await _jobservice.GetJobsApplied(UserId, pagination);
-            if (jobs != null)
-            {
-                return OkResponse("Success", jobs);
-            }
-            return BadResponse("Unable to get List of Jobs", "");
+            return Ok(jobs);
         }
 
         [HttpPost("ApplyJob")]

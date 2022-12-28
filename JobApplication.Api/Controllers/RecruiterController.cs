@@ -22,14 +22,7 @@ namespace JobApplication.Api.Controllers
         public async Task<IActionResult> GetPostedJob(PaginationModel pagination)
         {
             var jobs = await _recruiterService.GetPostedJobAsync(UserId, pagination);
-            if (jobs != null)
-            {
-                return OkResponse("Success", jobs);
-            }
-            else
-            {
-                return NotFoundResponse("Jobs Not Found", "");
-            }
+            return OkResponse("Success", jobs);
         }
 
 
@@ -37,14 +30,7 @@ namespace JobApplication.Api.Controllers
         public async Task<IActionResult> JobAppliedByCandidate(PaginationModel pagination)
         {
             var jobs = await _recruiterService.GetJobAppliedByCandidateAsync(UserId, pagination);
-            if (jobs != null)
-            {
-                return OkResponse("Success", jobs);
-            }
-            else
-            {
-                return NotFoundResponse("Jobs Not Found", "Contact to R");
-            }
+            return OkResponse("Success", jobs);
         }
 
         [HttpPost("AddJob")]

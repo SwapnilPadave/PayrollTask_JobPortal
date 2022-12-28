@@ -24,33 +24,21 @@ namespace JobApplication.Api.Controllers
         public async Task<IActionResult> GetCandidates(PaginationModel pagination)
         {
             var candidates = await _adminService.GetUsersAsync(pagination);
-            if (candidates != null)
-            {
-                return OkResponse("Success", candidates);
-            }
-            return BadResponse("Unable to get List of Candidates", "");
+            return OkResponse("Success", candidates);
         }
 
         [HttpPost("GetRecruiters")]
         public async Task<IActionResult> GetRecruiters(PaginationModel pagination)
         {
             var recruiters = await _adminService.GetRecruitersAsync(pagination);
-            if (recruiters != null)
-            {
-                return OkResponse("Success", recruiters);
-            }
-            return BadResponse("Unable to get List of Recruiters", "");
+            return OkResponse("Success", recruiters);
         }
 
         [HttpPost("GetJobs")]
         public async Task<IActionResult> GetJobs(PaginationModel pagination)
         {
             var jobs = await _adminService.GetJobsAsync(pagination);
-            if (jobs != null)
-            {
-                return OkResponse("Success", jobs);
-            }
-            return BadResponse("Unable to get List of Jobs", "");
+            return OkResponse("Success", jobs);
         }
 
 
@@ -59,53 +47,28 @@ namespace JobApplication.Api.Controllers
         public async Task<IActionResult> GetJobAppliedByCandidates(PaginationModel pagination)
         {
             var jobs = await _adminService.GetJobAppliedByCandidates(pagination);
-            if (jobs != null)
-            {
-                return OkResponse("Success", jobs);
-            }
-            return BadResponse("Unable to get List of Jobs", "");
+            return OkResponse("Success", jobs);
         }
 
         [HttpDelete("Deletejob/{Id}")]
         public async Task<IActionResult> DeleteJob(int Id)
         {
             var jobs = await _adminService.DeleteJobAsync(Id);
-            if (jobs)
-            {
-                return OkResponse("Success", jobs);
-            }
-            else
-            {
-                return BadResponse("Unable to delete job", "");
-            }
+            return OkResponse("Success", jobs);
         }
 
         [HttpDelete("DeleteRecruiter/{Id}")]
         public async Task<IActionResult> DeleteRecruiter(int Id)
         {
             var recruiter = await _adminService.DeleteRecruiterAsync(Id);
-            if (recruiter)
-            {
-                return OkResponse("Success", recruiter);
-            }
-            else
-            {
-                return BadResponse("Unable to delete Recruiter", "");
-            }
+            return OkResponse("Success", recruiter);
         }
 
         [HttpDelete("DeleteUser/{Id}")]
         public async Task<IActionResult> DeleteUser(int Id)
         {
             var user = await _adminService.DeleteUserAsync(Id);
-            if (user)
-            {
-                return OkResponse("Success", user);
-            }
-            else
-            {
-                return BadResponse("Unable to delete User", "");
-            }
+            return OkResponse("Success", user);
         }
 
 

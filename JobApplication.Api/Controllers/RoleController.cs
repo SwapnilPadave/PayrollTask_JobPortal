@@ -4,6 +4,7 @@ using JobApplication.Service.RoleMapService;
 using JobApplication.Service.RoleService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace JobApplication.Api.Controllers
@@ -38,7 +39,7 @@ namespace JobApplication.Api.Controllers
             }
             else
             {
-                return NotFoundResponse("Something went wrong.", "");
+                return BadRequest("Unauthorized Acess.");
             }
             
         }        
@@ -53,7 +54,7 @@ namespace JobApplication.Api.Controllers
             }
             else
             {
-                return NotFoundResponse("Something went wrong.", "");
+                return BadRequest("Unauthorized Acess.");
             }            
         }
 

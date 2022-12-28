@@ -36,14 +36,7 @@ namespace JobApplication.Api.Controllers
         public async Task<IActionResult> GetUserByIdAsync(int id)
         {
             var user = await _userService.GetUserByIdAsync(id);
-            if (user != null)
-            {
-                return OkResponse("Success", user);
-            }
-            else
-            {
-                return NotFoundResponse("User Not Found");
-            }
+            return OkResponse("Success", user);
         }
 
         [HttpPost("Updateuser/{id}")]

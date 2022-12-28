@@ -89,11 +89,7 @@ namespace JobApplication.Api.Controllers
         public async Task<IActionResult> ResetPassword(int otp, string newPassword, string confirmPassword)
         {
             var user = await _accountService.ResetPassword(otp, newPassword, confirmPassword);
-            if (user != null)
-            {
-                return OkResponse("Password updated successfully..", user);
-            }
-            return BadResponse("Incorrect Details..", "");
+            return OkResponse("Password Reset Successfully.", user);
         }
     }
 }
